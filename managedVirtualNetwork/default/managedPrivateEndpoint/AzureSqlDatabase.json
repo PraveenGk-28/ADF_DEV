@@ -1,0 +1,10 @@
+{
+	"name": "AzureSqlDatabase",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/785ad240-71ab-4a22-8360-a75950bd730f/resourceGroups/DataEngineer-Projects/providers/Microsoft.Sql/servers/dataengineerlearnazurepyspark",
+		"groupId": "sqlServer",
+		"fqdns": [
+			"dataengineerlearnazurepyspark.database.windows.net"
+		]
+	}
+}

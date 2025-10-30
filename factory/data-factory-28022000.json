@@ -1,0 +1,17 @@
+{
+	"name": "data-factory-28022000",
+	"properties": {
+		"globalParameters": {
+			"mpn_startwith": {
+				"type": "string",
+				"value": "7"
+			}
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7aa2ff08-0124-435f-bfbe-90260a420163",
+		"tenantId": "7c66de5a-c008-4c8c-8824-e48d1c807410"
+	}
+}

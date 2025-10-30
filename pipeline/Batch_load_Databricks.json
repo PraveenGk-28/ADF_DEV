@@ -1,0 +1,49 @@
+{
+	"name": "Batch_load_Databricks",
+	"properties": {
+		"activities": [
+			{
+				"name": "Storage_load",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "onpremise_To_datalakestorage",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "valid_files",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Storage_load",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Valid_File_Databricks",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-10-25T11:32:03Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

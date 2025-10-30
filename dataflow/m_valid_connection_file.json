@@ -1,0 +1,119 @@
+{
+	"name": "m_valid_connection_file",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "valid_file_connection_source",
+						"type": "DatasetReference"
+					},
+					"name": "connectionsource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "valid_file_connection_target",
+						"type": "DatasetReference"
+					},
+					"name": "connectionvalidfile"
+				},
+				{
+					"dataset": {
+						"referenceName": "error_data_connection",
+						"type": "DatasetReference"
+					},
+					"name": "connectionerror"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     parameter as string ('7')",
+				"}",
+				"source(output(",
+				"          ID as string,",
+				"          NAME as string,",
+				"          MOBILE_NUMBER as string,",
+				"          CONNECTION_DATE as string,",
+				"          ORDER_NUMBER as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     ignoreNoFilesFound: false,",
+				"     moveFiles: ['Source_Files','pre-run_temp'],",
+				"     rowUrlColumn: 'SOURCE_NAME',",
+				"     wildcardPaths:['Source_Files/simconnection*.csv']) ~> connectionsource",
+				"connectionsource derive(VALID_FLAG = iif(startsWith(MOBILE_NUMBER,$parameter),1,0),",
+				"          SOURCE_FILE_NAME = split(SOURCE_NAME, '/')[size(split(SOURCE_NAME, '/'))]) ~> derivedColumn",
+				"select1 split(VALID_FLAG==1,",
+				"     disjoint: false) ~> split1@(validdate, errordata)",
+				"derivedColumn select(mapColumn(",
+				"          ID,",
+				"          NAME,",
+				"          MOBILE_NUMBER,",
+				"          CONNECTION_DATE,",
+				"          ORDER_NUMBER,",
+				"          SOURCE_FILE_NAME,",
+				"          VALID_FLAG",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> select1",
+				"split1@validdate sink(allowSchemaDrift: true,",
+				"     validateSchema: true,",
+				"     partitionFileNames:['valid_connection_file'],",
+				"     umask: 0666,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          ID,",
+				"          NAME,",
+				"          MOBILE_NUMBER,",
+				"          CONNECTION_DATE,",
+				"          ORDER_NUMBER,",
+				"          SOURCE_FILE_NAME",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> connectionvalidfile",
+				"split1@errordata sink(allowSchemaDrift: true,",
+				"     validateSchema: true,",
+				"     input(",
+				"          ID as string,",
+				"          NAME as string,",
+				"          MOBILE_NUMBER as string,",
+				"          CONNECTION_DATE as string,",
+				"          ORDER_NUMBER as string,",
+				"          SOURCE_FILE_NAME as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          ID,",
+				"          CONNECTION_DATE,",
+				"          NAME,",
+				"          MOBILE_NUMBER,",
+				"          ORDER_NUMBER,",
+				"          SOURCE_FILE_NAME",
+				"     )) ~> connectionerror"
+			]
+		}
+	}
+}

@@ -1,0 +1,49 @@
+{
+	"name": "Batch_Load_Generation",
+	"properties": {
+		"activities": [
+			{
+				"name": "Valid_File_Generation",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "onpremise_To_datalakestorage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Valid_File_Generation",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "onpremise_To_datalakestorage",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "onpremise_To_datalakestorage",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-10-25T11:33:55Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

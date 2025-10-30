@@ -1,0 +1,42 @@
+{
+	"name": "error_data_contract",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CONTRACT_STARTDATE",
+				"type": "varchar"
+			},
+			{
+				"name": "CONTRACT_ENDDATE",
+				"type": "varchar"
+			},
+			{
+				"name": "ORDER_NUMBER",
+				"type": "varchar"
+			},
+			{
+				"name": "CONTRACT_MONTHS",
+				"type": "varchar"
+			},
+			{
+				"name": "MOBILE_NUMBER",
+				"type": "varchar"
+			},
+			{
+				"name": "SOURCE_FILE_NAME",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "error_data_contract"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

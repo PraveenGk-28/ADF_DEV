@@ -1,0 +1,42 @@
+{
+	"name": "error_data_connection",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "varchar"
+			},
+			{
+				"name": "NAME",
+				"type": "varchar"
+			},
+			{
+				"name": "MOBILE_NUMBER",
+				"type": "varchar"
+			},
+			{
+				"name": "CONNECTION_DATE",
+				"type": "varchar"
+			},
+			{
+				"name": "ORDER_NUMBER",
+				"type": "varchar"
+			},
+			{
+				"name": "SOURCE_FILE_NAME",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "error_data"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
