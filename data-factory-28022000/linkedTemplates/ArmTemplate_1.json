@@ -871,7 +871,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/Batch_Load_Generation')]",
+			"name": "[concat(parameters('factoryName'), '/Batch_Load_Generation_onpremise')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
