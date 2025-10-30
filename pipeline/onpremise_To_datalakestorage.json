@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "sim_connections",
+				"name": "sim_connection",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -129,7 +129,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "sim_connections",
+						"activity": "sim_connection",
 						"dependencyConditions": [
 							"Succeeded"
 						]
