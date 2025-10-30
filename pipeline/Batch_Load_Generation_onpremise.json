@@ -1,5 +1,5 @@
 {
-	"name": "Batch_Load_Generation",
+	"name": "Batch_Load_Generation_onpremise",
 	"properties": {
 		"activities": [
 			{
