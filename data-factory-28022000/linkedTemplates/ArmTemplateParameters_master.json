@@ -1,0 +1,62 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "data-factory-28022000"
+		},
+		"AzureDataLakeStorage_accountKey": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_password": {
+			"value": ""
+		},
+		"FileServer_password": {
+			"value": ""
+		},
+		"Files_check_connectionString": {
+			"value": ""
+		},
+		"AzureDataLakeStorage_properties_typeProperties_url": {
+			"value": "https://praveengk.dfs.core.windows.net/"
+		},
+		"AzureDatabricks_properties_typeProperties_existingClusterId": {
+			"value": "1015-184353-6fru9vri"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://Key-valult-demo.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "dataengineerlearnazurepyspark.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "Data_Engineer"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "Praveen"
+		},
+		"FileServer_properties_typeProperties_host": {
+			"value": "C:\\Users\\geeka\\Downloads\\data"
+		},
+		"FileServer_properties_typeProperties_userId": {
+			"value": "geeka"
+		},
+		"AzureSqlDatabase_properties_privateLinkResourceId": {
+			"value": "/subscriptions/785ad240-71ab-4a22-8360-a75950bd730f/resourceGroups/DataEngineer-Projects/providers/Microsoft.Sql/servers/dataengineerlearnazurepyspark"
+		},
+		"AzureSqlDatabase_properties_groupId": {
+			"value": "sqlServer"
+		},
+		"AzureSqlDatabase_properties_fqdns": {
+			"value": [
+				"dataengineerlearnazurepyspark.database.windows.net"
+			]
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

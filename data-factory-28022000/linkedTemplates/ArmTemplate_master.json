@@ -1,0 +1,169 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "data-factory-28022000"
+		},
+		"AzureDataLakeStorage_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage'"
+		},
+		"AzureSqlDatabase1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSqlDatabase1'"
+		},
+		"FileServer_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FileServer'"
+		},
+		"Files_check_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Files_check'"
+		},
+		"AzureDataLakeStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://praveengk.dfs.core.windows.net/"
+		},
+		"AzureDatabricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "1015-184353-6fru9vri"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://Key-valult-demo.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "dataengineerlearnazurepyspark.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Data_Engineer"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Praveen"
+		},
+		"FileServer_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Users\\geeka\\Downloads\\data"
+		},
+		"FileServer_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "geeka"
+		},
+		"AzureSqlDatabase_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/785ad240-71ab-4a22-8360-a75950bd730f/resourceGroups/DataEngineer-Projects/providers/Microsoft.Sql/servers/dataengineerlearnazurepyspark"
+		},
+		"AzureSqlDatabase_properties_groupId": {
+			"type": "string",
+			"defaultValue": "sqlServer"
+		},
+		"AzureSqlDatabase_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"dataengineerlearnazurepyspark.database.windows.net"
+			]
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "data-factory-28022000_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage_accountKey')]"
+					},
+					"Files_check_connectionString": {
+						"value": "[parameters('Files_check_connectionString')]"
+					},
+					"FileServer_password": {
+						"value": "[parameters('FileServer_password')]"
+					},
+					"AzureSqlDatabase1_password": {
+						"value": "[parameters('AzureSqlDatabase1_password')]"
+					},
+					"AzureDataLakeStorage_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage_properties_typeProperties_url')]"
+					},
+					"AzureKeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault_properties_typeProperties_baseUrl')]"
+					},
+					"AzureDatabricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks_properties_typeProperties_existingClusterId')]"
+					},
+					"FileServer_properties_typeProperties_host": {
+						"value": "[parameters('FileServer_properties_typeProperties_host')]"
+					},
+					"FileServer_properties_typeProperties_userId": {
+						"value": "[parameters('FileServer_properties_typeProperties_userId')]"
+					},
+					"AzureSqlDatabase_properties_privateLinkResourceId": {
+						"value": "[parameters('AzureSqlDatabase_properties_privateLinkResourceId')]"
+					},
+					"AzureSqlDatabase_properties_groupId": {
+						"value": "[parameters('AzureSqlDatabase_properties_groupId')]"
+					},
+					"AzureSqlDatabase_properties_fqdns": {
+						"value": "[parameters('AzureSqlDatabase_properties_fqdns')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_server": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_server')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_database": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_database')]"
+					},
+					"AzureSqlDatabase1_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSqlDatabase1_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "data-factory-28022000_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'data-factory-28022000_ArmTemplate_0')]"
+			]
+		}
+	]
+}
